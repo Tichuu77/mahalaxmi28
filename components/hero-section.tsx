@@ -30,8 +30,8 @@ export function HeroSection() {
       {/* Background Hero Layer */}
       <div className="absolute inset-0 z-0">
         <img
-          src="/hero-bg.jpeg"
-          alt="Mahalaxmi Nagar 51 Anaya Township"
+          src="/m51-entrance-gate.jpeg"
+          alt="Mahalaxmi Nagar 51 Anaya Township Grand Entrance"
           className="w-full h-full object-cover object-center scale-105 transition-transform duration-1000 opacity-55"
           fetchPriority="high"
           decoding="sync"

@@ -5,18 +5,12 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react"
 
 // Static data at module level
 const galleryItems = [
-  { id: 1,  src: "/gallery1.jpg",  alt: "Morning View",          category: "exterior"   },
-  { id: 2,  src: "/gallery2.jpg",  alt: "Well Maintained Square", category: "amenities" },
-  { id: 3,  src: "/gallery3.jpg",  alt: "Good Entrance",          category: "exterior"  },
-  { id: 4,  src: "/gallery4.jpg",  alt: "Tree Covered",           category: "landscape" },
-  { id: 5,  src: "/gallery5.jpg",  alt: "Night View",             category: "exterior"  },
-  { id: 6,  src: "/gallery6.jpg",  alt: "Cozy Living Space",      category: "interior"  },
-  { id: 7,  src: "/gallery7.jpg",  alt: "Designer Interiors",     category: "interior"  },
-  { id: 8,  src: "/gallery8.jpg",  alt: "Premium Amenities",      category: "amenities" },
-  { id: 9,  src: "/gallery9.jpg",  alt: "Swimming Pool",          category: "amenities" },
-  { id: 10, src: "/gallery10.jpg", alt: "Evening View",           category: "exterior"  },
-  { id: 11, src: "/gallery11.jpg", alt: "Playground",             category: "amenities" },
-  { id: 12, src: "/gallery12.jpg", alt: "Top View",               category: "exterior"  },
+  { id: 1, src: "/m51-entrance-gate.jpeg",   alt: "Grand Entrance Arch & Boulevard",         category: "Entrance Arch"   },
+  { id: 2, src: "/m51-club-aerial.jpeg",     alt: "Signature Clubhouse & Olympic Swimming Pool", category: "Club & Pool"  },
+  { id: 3, src: "/m51-clock-tower.jpeg",     alt: "Iconic European Clock Tower & Main Avenue",  category: "Landmark"      },
+  { id: 4, src: "/m51-football-ground.jpeg", alt: "Football Ground & Box Cricket Turfs",      category: "Sports Enclave" },
+  { id: 5, src: "/m51-kids-play.jpeg",       alt: "Children’s Adventure Play Wonderland",     category: "Kids Park"      },
+  { id: 6, src: "/m51-reception.jpeg",       alt: "Township Reception & Welcome Lounge",       category: "Welcome Lounge" },
 ]
 
 const TOTAL = galleryItems.length
@@ -229,10 +223,13 @@ export function GallerySection() {
             Visual Inspiration
           </span>
           <h2 className="font-bold leading-tight" style={{ fontFamily: "'Poppins', sans-serif", fontSize: "clamp(1.75rem, 4vw, 3.2rem)", color: "#0d0d0d" }}>
-            Inside Our{" "}
-            <span style={{ color: "#30534A" }}>Projects</span>{" "}
-            <span style={{ WebkitTextStroke: "1.5px #C9862b", color: "transparent" }}>&amp; Spaces</span>
+            Mahalaxmi Nagar 51{" "}
+            <span style={{ color: "#30534A" }}>Township</span>{" "}
+            <span style={{ WebkitTextStroke: "1.5px #C9862b", color: "transparent" }}>Gallery</span>
           </h2>
+          <p className="text-xs sm:text-sm text-[#555] mt-2 max-w-xl">
+            A visual tour through Nagpur’s premier 78-acre low-density gated township at Mouza Sumthana.
+          </p>
         </div>
 
         {/* Mobile: 2 Cards per Row Grid */}
@@ -261,15 +258,13 @@ export function GallerySection() {
         </div>
 
         {/* Desktop masonry */}
-        <div className={`hidden md:grid grid-cols-12 gap-4 lg:gap-5 auto-rows-[180px] transition-all duration-700 ${isVisible ? "opacity-100" : "opacity-0"}`} style={{ willChange: "opacity" }}>
-          <GalleryTile item={galleryItems[0]} className="col-span-6 row-span-2" large onClick={() => setSelectedId(galleryItems[0].id)} />
-          <GalleryTile item={galleryItems[1]} className="col-span-3 row-span-2"       onClick={() => setSelectedId(galleryItems[1].id)} />
-          <GalleryTile item={galleryItems[2]} className="col-span-3 row-span-1"       onClick={() => setSelectedId(galleryItems[2].id)} />
-          <GalleryTile item={galleryItems[3]} className="col-span-3 row-span-1"       onClick={() => setSelectedId(galleryItems[3].id)} />
-          <GalleryTile item={galleryItems[4]} className="col-span-6 row-span-1" wide  onClick={() => setSelectedId(galleryItems[4].id)} />
-          {galleryItems.slice(5, 12).map((item) => (
-            <GalleryTile key={item.id} item={item} className="col-span-3 row-span-1" onClick={() => setSelectedId(item.id)} />
-          ))}
+        <div className={`hidden md:grid grid-cols-12 gap-4 lg:gap-5 auto-rows-[220px] transition-all duration-700 ${isVisible ? "opacity-100" : "opacity-0"}`} style={{ willChange: "opacity" }}>
+          <GalleryTile item={galleryItems[0]} className="col-span-8 row-span-2" large onClick={() => setSelectedId(galleryItems[0].id)} />
+          <GalleryTile item={galleryItems[1]} className="col-span-4 row-span-1" onClick={() => setSelectedId(galleryItems[1].id)} />
+          <GalleryTile item={galleryItems[2]} className="col-span-4 row-span-1" onClick={() => setSelectedId(galleryItems[2].id)} />
+          <GalleryTile item={galleryItems[3]} className="col-span-4 row-span-1" onClick={() => setSelectedId(galleryItems[3].id)} />
+          <GalleryTile item={galleryItems[4]} className="col-span-4 row-span-1" onClick={() => setSelectedId(galleryItems[4].id)} />
+          <GalleryTile item={galleryItems[5]} className="col-span-4 row-span-1" onClick={() => setSelectedId(galleryItems[5].id)} />
         </div>
       </div>
 

@@ -176,24 +176,24 @@ export function AboutSection() {
           <div className="space-y-4 sm:space-y-6">
             <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl border border-[#30534A]/15 group">
               <img
-                src="/aboutUs.webp"
-                alt="Mahalaxmi Nagar 51 Anaya Community"
+                src="/m51-reception.jpeg"
+                alt="Mahalaxmi Nagar 51 Anaya Township Welcome Lounge & Reception"
                 className="w-full h-56 sm:h-80 object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
               <div className="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6">
                 <div className="inline-block bg-[#C9862b] text-white text-[9px] sm:text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider mb-1.5">
-                  Direct Developer Guidance
+                  Developer Showcase
                 </div>
                 <h4
                   className="text-white text-base sm:text-xl font-bold drop-shadow-md mb-0.5 sm:mb-1"
                   style={{ fontFamily: "'Poppins', sans-serif" }}
                 >
-                  Direct Developer Sales Desk · Mahalaxmi Infra
+                  Grand Reception &amp; Welcome Lounge · Mahalaxmi Infra
                 </h4>
                 <p className="text-[10px] sm:text-xs text-white/80">
-                  MahaRERA: PP1190002602003 · Dedicated Assistance from Site Selection to Registration
+                  Mahalaxmi Nagar 51 Anaya · MahaRERA: PP1190002602003 · Dedicated On-Site Customer Care
                 </p>
               </div>
             </div>

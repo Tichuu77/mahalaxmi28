@@ -34,10 +34,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "https://kb.mahalaxmiinfra.in/project_M-51.png",
+        url: "https://kb.mahalaxmiinfra.in/m51-entrance-gate.jpeg",
         width: 1200,
         height: 630,
-        alt: "Mahalaxmi Nagar 51 Anaya Master Plan Layout"
+        alt: "Mahalaxmi Nagar 51 Anaya Grand Entrance Gate"
       }
     ]
   },
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Mahalaxmi Nagar 51 Anaya | Villa Plots Nagpur",
     description: "78-Acre master-planned residential plotted township at Mouza Sumthana, Nagpur. MahaRERA: PP1190002602003.",
-    images: ["https://kb.mahalaxmiinfra.in/project_M-51.png"]
+    images: ["https://kb.mahalaxmiinfra.in/m51-entrance-gate.jpeg"]
   },
   robots: {
     index: true,
@@ -99,7 +99,7 @@ export default function RootLayout({
           "name": "Mahalaxmi Nagar 51 - Anaya (Mahalaxmi Infra)",
           "url": "https://kb.mahalaxmiinfra.in",
           "logo": "https://kb.mahalaxmiinfra.in/Malaxmi-Final-Logo.-2png.png",
-          "image": "https://kb.mahalaxmiinfra.in/project_M-51.png",
+          "image": "https://kb.mahalaxmiinfra.in/m51-entrance-gate.jpeg",
           "description": "Mahalaxmi Nagar 51 Anaya is a 78-acre premier master-planned residential plotted development with NMRDA sanction and MahaRERA approval (PP1190002602003) at Mouza Sumthana, Nagpur.",
           "sameAs": [
             "https://www.facebook.com/share/18PdfPMute/",

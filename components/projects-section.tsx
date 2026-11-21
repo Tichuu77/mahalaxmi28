@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef, useEffect, useMemo, useCallback, memo } from "react"
-import { ArrowRight, MapPin, Phone, ShieldCheck, CheckCircle2, Download, Sparkles, Compass, Maximize2 } from "lucide-react"
+import { ArrowRight, MapPin, Phone, ShieldCheck, CheckCircle2, Download, Sparkles, Compass, Maximize2, Building2, ChevronDown } from "lucide-react"
 
 type PlotCategory = {
   id: string
@@ -27,7 +27,7 @@ const PLOT_COLLECTIONS: PlotCategory[] = [
     roadWidth: "9m & 12m Cement Roads",
     facing: "East / West Facing Available",
     priceStarting: "Starting ₹35.4 Lakh*",
-    image: "/project_M-51.png",
+    image: "/m51-entrance-gate.jpeg",
     tag: "Most Popular",
     features: ["NMRDA Sanctioned", "Clear Title RL", "Underground Drainage", "Up to 90% Loan"],
     description: "Perfect dimensions for building modern 3 to 4 BHK independent duplex villas. Positioned along quiet internal paved avenues with manicured street lighting and complete underground utility conduits.",
@@ -41,7 +41,7 @@ const PLOT_COLLECTIONS: PlotCategory[] = [
     roadWidth: "12m & 18m Tree-Lined Boulevards",
     facing: "Central Garden & Park Facing",
     priceStarting: "Custom Pricing on Request",
-    image: "/gallery3.jpg",
+    image: "/m51-clock-tower.jpeg",
     tag: "Garden Facing",
     features: ["Park Frontage", "Grand Avenues", "Rainwater Harvesting", "Bank Approved"],
     description: "Positioned directly facing the landscaped central lawns and botanical gardens. Provides generous width allowing spacious front lawns, dual-car driveways, and expansive private terrace verandas.",
@@ -55,7 +55,7 @@ const PLOT_COLLECTIONS: PlotCategory[] = [
     roadWidth: "Dual Road Access (12m & 18m)",
     facing: "Double-Side Open Corner",
     priceStarting: "Flagship Luxury Plots",
-    image: "/gallery1.jpg",
+    image: "/m51-reception.jpeg",
     tag: "Exclusive Release",
     features: ["Corner Parcel", "Double Access", "Maximum Privacy", "Prime Elevation"],
     description: "The crown jewels of Mahalaxmi Nagar 51 Anaya. Limited edition large corner plots with dual road frontages, ideal for multi-storey royal mansions, swimming pools, private gazebos, and grand courtyards.",
@@ -69,12 +69,33 @@ const PLOT_COLLECTIONS: PlotCategory[] = [
     roadWidth: "12m Wide Central Ring",
     facing: "Clubhouse & Turf Facing",
     priceStarting: "Lifestyle Premium",
-    image: "/gallery9.jpg",
+    image: "/m51-football-ground.jpeg",
     tag: "Next to Amenities",
     features: ["30-Sec Walk to Pool", "Turf Proximity", "Creche Nearby", "24/7 Security"],
     description: "Situated just steps away from the grand multi-facility Clubhouse, Olympic-length swimming pool, Box Cricket Turf, Football Turf, and the day-care crèche. Offers unmatched everyday convenience.",
     suitableFor: "Ideal for active families with children and sports enthusiasts who value healthy resort living.",
   },
+]
+
+type OtherProject = {
+  title: string
+  location: string
+  status: "Ongoing" | "Delivered"
+  img: string
+}
+
+const otherProjectsList: OtherProject[] = [
+  { title: "Mahalaxmi Nagar-30", location: "MOUZA - PIPLA", status: "Ongoing", img: "/project_M-30.webp" },
+  { title: "Mahalaxmi Nagar-31", location: "MOUZA - PIPLA", status: "Ongoing", img: "/project_M-31.webp" },
+  { title: "Mahalaxmi Nagar-38", location: "MOUZA - MHASALA", status: "Ongoing", img: "/project_M-38.webp" },
+  { title: "Mahalaxmi Nagar-40", location: "MOUZA - KOTEWADA", status: "Ongoing", img: "/M-40-PROJECT.webp" },
+  { title: "Mahalaxmi Nagar-45", location: "MOUZA - SUMTHANA", status: "Ongoing", img: "/project_M-45.jpg" },
+  { title: "Mahalaxmi Nagar-50", location: "MOUZA - SUMTHANA", status: "Ongoing", img: "/project_M-50.webp" },
+  { title: "Mahalaxmi Nagar-49", location: "MOUZA - SONDAPAR", status: "Ongoing", img: "/project_M-49.jpeg" },
+  { title: "Mahalaxmi Nagar-47", location: "KORADI ROAD", status: "Ongoing", img: "/project_M-47.jpg" },
+  { title: "Mahalaxmi Nagar-37", location: "MOUZA - KOTEWADA", status: "Delivered", img: "/M-37-PROJECT.webp" },
+  { title: "Mahalaxmi Nagar-36", location: "MOUZA - PANJARI", status: "Delivered", img: "/M-36-PROJECT.jpg" },
+  { title: "Mahalaxmi Nagar-28", location: "MOUZA - SONDAPAR", status: "Delivered", img: "/M-28-PROJECT.jpg" },
 ]
 
 const TABS = [
@@ -90,6 +111,8 @@ type TabValue = (typeof TABS)[number]["value"]
 export function ProjectsSection() {
   const [selectedTab, setSelectedTab] = useState<TabValue>("all")
   const [modalImage, setModalImage] = useState<string | null>(null)
+  const [otherStatusFilter, setOtherStatusFilter] = useState<"all" | "Ongoing" | "Delivered">("all")
+  const [showOtherProjects, setShowOtherProjects] = useState(true)
   const sectionRef = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
 
@@ -111,8 +134,18 @@ export function ProjectsSection() {
     return PLOT_COLLECTIONS.filter((p) => p.id === selectedTab)
   }, [selectedTab])
 
+  const filteredOtherProjects = useMemo(() => {
+    if (otherStatusFilter === "all") return otherProjectsList
+    return otherProjectsList.filter((p) => p.status === otherStatusFilter)
+  }, [otherStatusFilter])
+
   const handleWhatsAppInquiry = useCallback((title: string, sizeRange: string) => {
     const text = `Hi Bharti ji, I am interested in the "${title} (${sizeRange})" at Mahalaxmi Nagar 51 Anaya, Mouza Sumthana. Please share the detailed layout plan, available plot numbers, and pricing.`
+    window.open(`https://wa.me/919579302821?text=${encodeURIComponent(text)}`, "_blank")
+  }, [])
+
+  const handleOtherProjectInquiry = useCallback((title: string, location: string) => {
+    const text = `Hi Bharti ji, I am interested in knowing more about "${title}" located at ${location}. Please share layout plan, available inventory, and price sheet.`
     window.open(`https://wa.me/919579302821?text=${encodeURIComponent(text)}`, "_blank")
   }, [])
 
@@ -409,6 +442,124 @@ export function ProjectsSection() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* =========================================================================
+            ONGOING & DELIVERED LANDMARK PROJECTS BY MAHALAXMI INFRA
+           ========================================================================= */}
+        <div id="other-projects" className="pt-8 border-t border-[#30534A]/15">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+            <div>
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200 text-emerald-800 text-[10px] font-bold uppercase tracking-wider mb-2">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                Active &amp; Delivered Developments
+              </div>
+              <h3
+                className="text-2xl sm:text-3xl font-extrabold text-[#0d0d0d] leading-tight"
+                style={{ fontFamily: "'Poppins', sans-serif" }}
+              >
+                Other Ongoing Projects by{" "}
+                <span style={{ color: "#30534A" }}>Mahalaxmi</span>{" "}
+                <span style={{ color: "#C9862b" }}>Infra</span>
+              </h3>
+              <p className="text-xs sm:text-sm text-[#555] mt-1">
+                Explore our prestigious ongoing &amp; delivered residential plotted townships across Nagpur.
+              </p>
+            </div>
+
+            <div className="flex items-center gap-2 self-start sm:self-auto flex-wrap">
+              {(["all", "Ongoing", "Delivered"] as const).map((filter) => (
+                <button
+                  key={filter}
+                  onClick={() => setOtherStatusFilter(filter)}
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer ${
+                    otherStatusFilter === filter
+                      ? "bg-[#30534A] text-white shadow-sm"
+                      : "bg-[#30534A]/6 text-[#30534A] hover:bg-[#30534A]/10 border border-[#30534A]/15"
+                  }`}
+                  style={{ fontFamily: "'Poppins', sans-serif" }}
+                >
+                  {filter === "all" ? "All Projects" : filter === "Ongoing" ? "Ongoing (8)" : "Delivered (3)"}
+                </button>
+              ))}
+
+              <button
+                onClick={() => setShowOtherProjects((prev) => !prev)}
+                className="text-xs font-bold text-[#30534A] hover:text-[#C9862b] flex items-center gap-1 py-1.5 px-3 rounded-full border border-[#30534A]/20 bg-white transition-colors cursor-pointer"
+              >
+                <span>{showOtherProjects ? "Hide" : "Show"}</span>
+                <ChevronDown size={14} className={`transition-transform duration-200 ${showOtherProjects ? "rotate-180" : ""}`} />
+              </button>
+            </div>
+          </div>
+
+          {showOtherProjects && (
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-6 animate-in fade-in duration-300">
+              {filteredOtherProjects.map((p) => (
+                <div
+                  key={p.title}
+                  className="rounded-2xl overflow-hidden bg-white border border-[#30534A]/12 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="relative h-32 sm:h-44 overflow-hidden bg-[#11231e]">
+                      <img
+                        src={p.img}
+                        alt={p.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+                      
+                      <div className="absolute top-2.5 left-2.5">
+                        {p.status === "Ongoing" ? (
+                          <span className="bg-emerald-600 text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider flex items-center gap-1 shadow-sm">
+                            <span className="w-1.5 h-1.5 rounded-full bg-white animate-ping" />
+                            Ongoing
+                          </span>
+                        ) : (
+                          <span className="bg-[#C9862b] text-white text-[9px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow-sm">
+                            Delivered
+                          </span>
+                        )}
+                      </div>
+
+                      <div className="absolute bottom-2 left-2.5 right-2.5 text-white">
+                        <span className="text-[9px] font-semibold text-[#C9862b] uppercase tracking-wider block">
+                          Mahalaxmi Infra
+                        </span>
+                        <h4
+                          className="font-bold text-xs sm:text-sm leading-tight drop-shadow-sm truncate"
+                          style={{ fontFamily: "'Poppins', sans-serif" }}
+                        >
+                          {p.title}
+                        </h4>
+                      </div>
+                    </div>
+
+                    <div className="p-3 sm:p-4">
+                      <div className="flex items-center gap-1 text-[#666] text-[10px] sm:text-xs mb-3">
+                        <MapPin size={12} className="text-[#C9862b] shrink-0" />
+                        <span className="font-semibold text-[#0d0d0d] truncate">{p.location}</span>
+                      </div>
+                      <div className="p-2 rounded-lg bg-[#30534A]/5 text-[10px] sm:text-[11px] text-[#30534A] font-medium leading-tight">
+                        NMRDA Sanctioned · RERA Approved Layout
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="p-3 sm:p-4 pt-0">
+                    <button
+                      onClick={() => handleOtherProjectInquiry(p.title, p.location)}
+                      className="w-full py-2 sm:py-2.5 rounded-xl bg-gradient-to-r from-[#30534A] to-[#25423b] hover:from-[#25423b] hover:to-[#1a302a] text-white text-[11px] sm:text-xs font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm active:scale-95 cursor-pointer"
+                    >
+                      <Phone size={12} className="text-[#C9862b]" />
+                      <span>Inquire Project</span>
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
       </div>
